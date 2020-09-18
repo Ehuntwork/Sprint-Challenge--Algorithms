@@ -95,9 +95,23 @@ class SortingRobot:
     def sort(self):
         """
         Sort the robot's list.
+        
         """
-        # Fill this out
-        pass
+        while self.light_is_on() == False:
+            print(self.compare_item())
+            # returns to start of list after end of list    
+            if self.can_move_right() == False:
+                while self.can_move_left() == True:
+                    self.move_left()
+
+            while self.can_move_right() == True:
+                #if held item is greater swap...
+                if self._list[self._position ] > self.item: #should work with self.compare() == 1 but doesn't
+                    self._item, self._list[self._position] = self._list[self._position] ,self._item # equivalent of self.swap_item()
+                    self.set_light_off()
+                self.move_right()
+
+
 
 
 if __name__ == "__main__":
